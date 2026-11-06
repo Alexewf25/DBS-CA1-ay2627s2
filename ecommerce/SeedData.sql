@@ -152,28 +152,3 @@ INSERT INTO public.sale_order_item (id, sale_order_id, product_id, quantity) VAL
 
 SELECT setval('public.sale_order_item_id_seq', 51, true);
 
--- ============================================
--- SEED: review (sample data for testing)
--- ============================================
-INSERT INTO public.review (id, member_id, product_id, rating, review_text, created_at, updated_at) VALUES
-(1, 2, 1, 5, 'Excellent bottle! Very sturdy and keeps water cold all day.', '2025-01-20 10:00:00', '2025-01-20 10:00:00'),
-(2, 3, 2, 4, 'Great insulation. The wide mouth makes it easy to clean.', '2025-01-25 14:00:00', '2025-01-25 14:00:00'),
-(3, 4, 3, 5, 'Perfect for hiking. The carabiner clip is very handy.', '2025-01-28 09:00:00', '2025-01-28 09:00:00'),
-(4, 5, 4, 3, 'Decent bottle but the lid feels a bit flimsy.', '2025-02-01 11:00:00', '2025-02-01 11:00:00'),
-(5, 2, 5, 4, 'Love the flip-top straw. Very convenient at the gym.', '2025-03-15 10:00:00', '2025-03-15 10:00:00'),
-(6, 3, 2, 5, 'Bought a second one. Absolutely worth the price.', '2025-03-20 13:00:00', '2025-03-20 13:00:00');
-
-SELECT setval('public.review_id_seq', 6, true);
-
--- ============================================
--- SEED: comment (sample data for testing)
--- ============================================
-INSERT INTO public.comment (id, review_id, member_id, parent_comment_id, comment_text, created_at) VALUES
-(1, 1, 3, NULL, 'I agree! I have the same bottle and it is fantastic.', '2025-01-21 09:00:00'),
-(2, 1, 4, NULL, 'How long does it actually keep drinks cold?', '2025-01-21 10:30:00'),
-(3, 1, 5, 2,    'In my experience, about 20 hours in Singapore weather!', '2025-01-21 11:00:00'),
-(4, 2, 2, NULL, 'Does it fit in a standard bag bottle pocket?', '2025-01-26 08:00:00'),
-(5, 2, 6, 4,    'Yes it does, I use it with my backpack daily.', '2025-01-26 09:30:00'),
-(6, 3, 7, NULL, 'Great review! Is the carabiner clip sold separately?', '2025-01-29 10:00:00');
-
-SELECT setval('public.comment_id_seq', 6, true);
