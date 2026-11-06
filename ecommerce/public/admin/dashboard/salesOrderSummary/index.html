@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Admin Dashboard – HydroMax Shop</title>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="nav-brand">
+      <span class="nav-icon">💧</span>
+      <span>HydroMax Shop</span>
+    </div>
+    <div class="nav-links">
+      <span class="nav-welcome">Admin: <strong id="navUsername">Admin</strong></span>
+      <button class="btn-logout" onclick="logout()">Logout</button>
+    </div>
+  </nav>
+
+  <!-- Page Layout -->
+  <div class="dashboard-layout">
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        <span class="sidebar-icon">🏠</span>
+        <span>Dashboard Menu</span>
+      </div>
+      <ul class="sidebar-menu">
+        <li class="sidebar-item active">
+          <span class="sidebar-item-icon">📊</span>
+          <span>Sales Order Summary</span>
+        </li>
+        <li class="sidebar-item">
+          <span class="sidebar-item-icon">📦</span>
+          <span>Products</span>
+        </li>
+        <li class="sidebar-item">
+          <span class="sidebar-item-icon">👥</span>
+          <span>Members</span>
+        </li>
+        <li class="sidebar-item">
+          <span class="sidebar-item-icon">🛒</span>
+          <span>Orders</span>
+        </li>
+      </ul>
+    </aside>
+
+    <!-- Main Dashboard Content -->
+    <main class="dashboard-main">
+
+      <!-- Page Title -->
+      <div class="page-title-bar">
+        <div>
+          <h1 class="page-title">Sales Order Summary</h1>
+          <p class="page-subtitle">Filter, sort and analyse sales data across all orders</p>
+        </div>
+        <div class="title-actions">
+          <button class="btn-export" onclick="exportCSV()">⬇ Export CSV</button>
+        </div>
+      </div>
+
+      <!-- Summary Stat Cards -->
+      <div class="stat-cards">
+        <div class="stat-card">
+          <div class="stat-icon" style="background:#e8f4fd;">📋</div>
+          <div class="stat-info">
+            <div class="stat-value" id="statTotalOrders">–</div>
+            <div class="stat-label">Total Orders</div>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon" style="background:#d4edda;">💰</div>
+          <div class="stat-info">
+            <div class="stat-value" id="statTotalRevenue">–</div>
+            <div class="stat-label">Total Revenue</div>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon" style="background:#fff3cd;">👤</div>
+          <div class="stat-info">
+            <div class="stat-value" id="statTotalCustomers">–</div>
+            <div class="stat-label">Customers</div>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon" style="background:#f8d7da;">📈</div>
+          <div class="stat-info">
+            <div class="stat-value" id="statAvgOrder">–</div>
+            <div class="stat-label">Avg Order Value</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Filter Panel -->
+      <div class="filter-panel">
+        <div class="filter-panel-header">
+          <h2 class="filter-panel-title">
+            <span>🔍</span> Filter &amp; Sort
+          </h2>
+          <button class="btn-reset" onclick="resetFilters()">↺ Reset Filters</button>
+        </div>
+
+        <div class="filter-grid">
+
+          <!-- Start Date -->
+          <div class="filter-group">
+            <label class="filter-label">Start Date</label>
+            <input
+              type="date"
+              id="startDate"
+              class="filter-input"
+            />
+          </div>
+
+          <!-- End Date -->
+          <div class="filter-group">
+            <label class="filter-label">End Date</label>
+            <input
+              type="date"
+              id="endDate"
+              class="filter-input"
+            />
+          </div>
+
+          <!-- Product Category -->
+          <div class="filter-group">
+            <label class="filter-label">Product Category</label>
+            <select id="productCategory" class="filter-input">
+              <option value="">All Categories</option>
+              <option value="Classic Bottle">Classic Bottle</option>
+              <option value="Insulated Bottle">Insulated Bottle</option>
+              <option value="Sports Bottle">Sports Bottle</option>
+              <option value="Tumbler">Tumbler</option>
+              <option value="Kids Bottle">Kids Bottle</option>
+              <option value="Infuser Bottle">Infuser Bottle</option>
+              <option value="Flask">Flask</option>
+              <option value="Travel Bottle">Travel Bottle</option>
+              <option value="Filtered Bottle">Filtered Bottle</option>
+              <option value="Corporate Gift">Corporate Gift</option>
+              <option value="Premium Bottle">Premium Bottle</option>
+              <option value="Tea Bottle">Tea Bottle</option>
+              <option value="Eco Bottle">Eco Bottle</option>
+            </select>
+          </div>
+
+          <!-- Sort By -->
+          <div class="filter-group">
+            <label class="filter-label">Sort By</label>
+            <select id="sortBy" class="filter-input">
+              <option value="order_date">Order Date (Latest First)</option>
+              <option value="total_amount">Total Amount (Highest First)</option>
+              <option value="customer_name">Customer Name (A–Z)</option>
+              <option value="status">Status</option>
+            </select>
+          </div>
+
+          <!-- Gender (bonus filter) -->
+          <div class="filter-group">
+            <label class="filter-label">Gender</label>
+            <select id="genderFilter" class="filter-input">
+              <option value="">All Genders</option>
+              <option value="M">Male</option>
+              <option value="F">Female</option>
+            </select>
+          </div>
+
+          <!-- Status Filter -->
+          <div class="filter-group">
+            <label class="filter-label">Order Status</label>
+            <select id="statusFilter" class="filter-input">
+              <option value="">All Statuses</option>
+              <option value="COMPLETED">Completed</option>
+              <option value="PACKING">Packing</option>
+              <option value="CANCELLED">Cancelled</option>
+            </select>
+          </div>
+
+        </div>
+
+        <!-- Search Button -->
+        <div class="filter-actions">
+          <button class="btn-search" onclick="loadSummary()">
+            🔍 Search
+          </button>
+        </div>
+      </div>
+
+      <!-- Message -->
+      <div id="message" class="message hidden"></div>
+
+      <!-- Results Table -->
+      <div class="table-panel">
+        <div class="table-panel-header">
+          <h2 class="table-panel-title">📋 Results</h2>
+          <span class="table-count" id="resultCount">No data loaded</span>
+        </div>
+
+        <div class="table-wrapper">
+          <table class="data-table" id="summaryTable">
+            <thead>
+              <tr>
+                <th>Order ID</th>
+                <th>Order Date</th>
+                <th>Customer Name</th>
+                <th>Gender</th>
+                <th>Product Name</th>
+                <th>Category</th>
+                <th>Qty</th>
+                <th>Unit Price</th>
+                <th>Total Amount</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody id="summaryTableBody">
+              <tr>
+                <td colspan="10" class="table-placeholder">
+                  <div class="placeholder-content">
+                    <div class="placeholder-icon">📊</div>
+                    <p>Use the filters above and click <strong>Search</strong> to load data.</p>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+    </main>
+  </div>
+
+  <footer class="footer">
+    <p>© 2025 HydroMax Shop · ST0525 Database Systems CA1 · Admin Panel</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

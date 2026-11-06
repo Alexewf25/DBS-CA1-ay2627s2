@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Login – HydroMax Shop</title>
+  <link rel="stylesheet" href="/auth/login/style.css" />
+</head>
+<body>
+  <div class="page-wrapper">
+    <div class="brand">
+      <div class="brand-icon">💧</div>
+      <h1>HydroMax Shop</h1>
+      <p class="brand-tagline">Premium Stainless Steel Bottles</p>
+    </div>
+
+    <div class="card">
+      <h2>Welcome Back</h2>
+      <p class="card-subtitle">Sign in to your account</p>
+
+      <div id="message" class="message hidden"></div>
+
+      <form id="loginForm">
+        <div class="form-group">
+          <label for="username">Username</label>
+          <input type="text" id="username" placeholder="Enter your username" required />
+        </div>
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input type="password" id="password" placeholder="Enter your password" required />
+        </div>
+        <button type="submit" class="btn-primary">
+          <span>Login</span>
+        </button>
+      </form>
+
+      <p class="register-link">
+        Don't have an account? <a href="/auth/register">Register here</a>
+      </p>
+    </div>
+
+    <!-- Demo credentials panel -->
+    <div class="credentials-panel">
+      <div class="credentials-header">
+        <span class="lock-icon">🔑</span>
+        <h3>Demo Credentials</h3>
+      </div>
+      <div class="credentials-grid">
+        <div class="credential-card admin-card">
+          <div class="credential-badge admin-badge">ADMIN</div>
+          <div class="credential-info">
+            <div class="credential-row">
+              <span class="credential-label">Username</span>
+              <span class="credential-value" id="adminUser">admin</span>
+              <button class="copy-btn" onclick="copyText('admin', 'username')">Copy</button>
+            </div>
+            <div class="credential-row">
+              <span class="credential-label">Password</span>
+              <span class="credential-value" id="adminPass">Password1!</span>
+              <button class="copy-btn" onclick="copyText('Password1!', 'password')">Copy</button>
+            </div>
+          </div>
+          <div class="credential-note">
+            <span>🏠</span> Redirects to Admin Dashboard
+          </div>
+        </div>
+
+        <div class="credential-card user-card">
+          <div class="credential-badge user-badge">USER</div>
+          <div class="credential-info">
+            <div class="credential-row">
+              <span class="credential-label">Username</span>
+              <span class="credential-value" id="userUser">johnsmith</span>
+              <button class="copy-btn" onclick="copyText('johnsmith', 'username')">Copy</button>
+            </div>
+            <div class="credential-row">
+              <span class="credential-label">Password</span>
+              <span class="credential-value" id="userPass">Password1!</span>
+              <button class="copy-btn" onclick="copyText('Password1!', 'password')">Copy</button>
+            </div>
+          </div>
+          <div class="credential-note">
+            <span>🛍️</span> Redirects to View All Products
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <script src="/auth/login/script.js"></script>
+</body>
+</html>

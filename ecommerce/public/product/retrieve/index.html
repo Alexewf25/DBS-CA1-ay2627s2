@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>All Products – HydroMax Shop</title>
+  <link rel="stylesheet" href="/product/retrieve/style.css"/>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="nav-brand">
+      <span class="nav-icon">💧</span>
+      <span>HydroMax Shop</span>
+    </div>
+    <div class="nav-links">
+      <span class="nav-welcome">Welcome, <strong id="navUsername">User</strong></span>
+      <a href="/review/retrieve/all" class="nav-link">My Reviews</a>
+      <a href="/review/create" class="nav-link">Write a Review</a>
+      <button class="btn-logout" onclick="logout()">Logout</button>
+    </div>
+  </nav>
+
+  <!-- Page Header -->
+  <div class="page-header">
+    <div class="page-header-inner">
+      <h1>Our Products</h1>
+      <p>Discover our range of premium stainless steel bottles</p>
+    </div>
+  </div>
+
+  <!-- Main Content -->
+  <main class="main-content">
+
+    <!-- Search & Filter Bar -->
+    <div class="filter-bar">
+      <input type="text" id="searchInput" placeholder="🔍  Search products..." class="search-input" oninput="filterProducts()"/>
+      <select id="categoryFilter" class="filter-select" onchange="filterProducts()">
+        <option value="">All Categories</option>
+        <option value="Classic Bottle">Classic Bottle</option>
+        <option value="Insulated Bottle">Insulated Bottle</option>
+        <option value="Sports Bottle">Sports Bottle</option>
+        <option value="Tumbler">Tumbler</option>
+        <option value="Kids Bottle">Kids Bottle</option>
+        <option value="Infuser Bottle">Infuser Bottle</option>
+        <option value="Flask">Flask</option>
+        <option value="Travel Bottle">Travel Bottle</option>
+        <option value="Filtered Bottle">Filtered Bottle</option>
+        <option value="Corporate Gift">Corporate Gift</option>
+        <option value="Premium Bottle">Premium Bottle</option>
+        <option value="Tea Bottle">Tea Bottle</option>
+        <option value="Eco Bottle">Eco Bottle</option>
+      </select>
+      <select id="sortFilter" class="filter-select" onchange="filterProducts()">
+        <option value="default">Sort By: Default</option>
+        <option value="price-asc">Price: Low to High</option>
+        <option value="price-desc">Price: High to Low</option>
+        <option value="name-asc">Name: A–Z</option>
+      </select>
+    </div>
+
+    <!-- Stats Bar -->
+    <div class="stats-bar">
+      <span id="productCount">Loading products...</span>
+    </div>
+
+    <!-- Message -->
+    <div id="message" class="message hidden"></div>
+
+    <!-- Product Grid -->
+    <div class="product-grid" id="productGrid">
+      <!-- Skeleton loaders -->
+      <div class="product-card skeleton"></div>
+      <div class="product-card skeleton"></div>
+      <div class="product-card skeleton"></div>
+      <div class="product-card skeleton"></div>
+      <div class="product-card skeleton"></div>
+      <div class="product-card skeleton"></div>
+    </div>
+
+  </main>
+
+  <footer class="footer">
+    <p>© 2025 HydroMax Shop · ST0525 Database Systems CA1</p>
+  </footer>
+
+  <script src="/product/retrieve/script.js"></script>
+</body>
+</html>
