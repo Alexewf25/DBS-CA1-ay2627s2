@@ -6,8 +6,7 @@
 -- ============================================
 -- DROP EXISTING TABLES (for clean setup)
 -- ============================================
-DROP TABLE IF EXISTS public.comment CASCADE;
-DROP TABLE IF EXISTS public.review CASCADE;
+
 DROP TABLE IF EXISTS public.sale_order_item CASCADE;
 DROP TABLE IF EXISTS public.sale_order CASCADE;
 DROP TABLE IF EXISTS public.member CASCADE;
@@ -61,32 +60,4 @@ CREATE TABLE public.sale_order_item (
     quantity NUMERIC NOT NULL,
     CONSTRAINT fk_sale_order_item_sale_order FOREIGN KEY (sale_order_id) REFERENCES public.sale_order(id),
     CONSTRAINT fk_sale_order_item_product FOREIGN KEY (product_id) REFERENCES public.product(id)
-);
-
--- ============================================
--- NEW TABLES: Review & Comment (Student Task)
--- ============================================
-
-CREATE TABLE public.review (
-    id SERIAL PRIMARY KEY,
-    member_id INTEGER NOT NULL,
-    product_id INTEGER NOT NULL,
-    rating INTEGER NOT NULL CHECK (rating BETWEEN 1 AND 5),
-    review_text TEXT,
-    created_at TIMESTAMP WITHOUT TIME ZONE DEFAULT NOW(),
-    updated_at TIMESTAMP WITHOUT TIME ZONE DEFAULT NOW(),
-    CONSTRAINT fk_review_member FOREIGN KEY (member_id) REFERENCES public.member(id),
-    CONSTRAINT fk_review_product FOREIGN KEY (product_id) REFERENCES public.product(id)
-);
-
-CREATE TABLE public.comment (
-    id SERIAL PRIMARY KEY,
-    review_id INTEGER NOT NULL,
-    member_id INTEGER NOT NULL,
-    parent_comment_id INTEGER DEFAULT NULL,  -- supports nested/reply comments
-    comment_text TEXT NOT NULL,
-    created_at TIMESTAMP WITHOUT TIME ZONE DEFAULT NOW(),
-    CONSTRAINT fk_comment_review FOREIGN KEY (review_id) REFERENCES public.review(id) ON DELETE CASCADE,
-    CONSTRAINT fk_comment_member FOREIGN KEY (member_id) REFERENCES public.member(id),
-    CONSTRAINT fk_comment_parent FOREIGN KEY (parent_comment_id) REFERENCES public.comment(id) ON DELETE CASCADE
 );
